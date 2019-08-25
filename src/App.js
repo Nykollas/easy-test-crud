@@ -29,7 +29,8 @@ class App extends Component {
     pages: [],
     ind_active: 0,
     next_cursor: null,
-    previous_cursor: null
+    previous_cursor: null,
+    emp_qtd:null,
   }
 
   getData = () => {
@@ -48,16 +49,20 @@ class App extends Component {
             email: snapshotChild.val().email,
           }
           arr_data.push(employee);
-        })
-
-        this.setState({
-          data: arr_data,
-
         });
 
-
+        this.setState({
+          data: arr_data
+        });
       })
   }
+
+  getEmployeeQtd = () => {
+    firebase.database().ref("employee_qtd").on('value', (snapshot) => {
+      this.setState({ emp_qtd: snapshot.val() });
+    })
+  }
+
 
   createEmployee = () => {
     let seed = Math.random();
@@ -74,7 +79,14 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+
+    this.getEmployeeQtd();
     this.getData();
+    
+    
+
+    
+    
   }
 
   filterData = (event) => {
@@ -89,6 +101,76 @@ class App extends Component {
     console.log(res);
     if (value == '') {
       this.setState({ filtered: false });
+    }
+  }
+
+
+  showFilteredResults = () => {
+    if (this.state.emp_qtd > 0) {
+      if (this.state.filtered && this.state.searched_data) {
+        return (
+          <div className='table'>
+            {this.state.searched_data.map(
+              (row) => {
+                return <RowContainer id={row.id} name={row.name} email={row.email}></RowContainer>
+              }
+            )}
+          </div>
+        )
+      } else {
+        return (
+          <div class="circular-progress-container">
+            <CircularProgress className="home"></CircularProgress>
+          </div>
+        )
+      }
+    } else {
+      return (<p>Não existem empregados cadastrados</p>);
+    }
+  }
+
+
+  showGeneralResults = () => {
+    if (this.state.emp_qtd > 0) {
+      if (this.state.data && !this.state.filtered) {
+        return (
+          <div className='table'>
+            {this.state.data.map(
+              (row) => {
+                return <RowContainer id={row.id} name={row.name} email={row.email}></RowContainer>
+              }
+            )}
+          </div>
+        )
+      } else {
+        if(this.state.emp_qtd != null){
+          return (
+            <div class="circular-progress-container">
+              <p>Não existem empregados cadastrados</p>
+            </div>
+          );
+        }else{
+          return (
+            <div class="circular-progress-container">
+              <CircularProgress className="home"></CircularProgress>
+            </div>
+          )
+        }
+      }
+    } else {
+      if(this.state.emp_qtd != null){
+        return (
+          <div class="circular-progress-container">
+            <p>Não existem empregados cadastrados</p>
+          </div>
+        );
+      }else{
+        return (
+          <div class="circular-progress-container">
+            <CircularProgress className="home"></CircularProgress>
+          </div>
+        )
+      }
     }
   }
 
@@ -115,28 +197,14 @@ class App extends Component {
           </div>
         </div>
 
-        {this.state.filtered && this.state.searched_data ?
-          <div className='table'>
-            {
-              this.state.searched_data.map((row) => {
-                return <RowContainer name={row.name} email={row.email}></RowContainer>
-              })
-            }
-          </div>
-          :
-          <CircularProgress className="home"></CircularProgress>
+        {
+          this.state.filtered ?
+            this.showFilteredResults()
+            :
+            this.showGeneralResults()
         }
-        {this.state.data && !this.state.filtered ?
-          <div className='table'>
-            {
-              this.state.data.map((row) => {
-                return <RowContainer id={row.id} name={row.name} email={row.email}></RowContainer>
-              })
-            }
-          </div>
-          :
-          <CircularProgress className='home'></CircularProgress>
-        }
+
+
       </div>
     );
   }
