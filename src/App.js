@@ -7,9 +7,10 @@ import LeftArrow from '@material-ui/icons/ArrowLeft';
 import RightArrow from '@material-ui/icons/ArrowRight';
 import Button from '@material-ui/core/Button';
 import Fuse from 'fuse.js';
-import md5 from 'md5';
 import firebase from 'firebase';
 import './assets/styles.css';
+
+const md5 = require('md5');
 
 
 var firebaseConfig = {
@@ -30,7 +31,6 @@ class App extends Component {
     next_cursor: null,
     previous_cursor: null
   }
-
 
   getData = () => {
     this.setState({ loading: true });
@@ -75,7 +75,6 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getData();
-  
   }
 
   filterData = (event) => {
@@ -97,7 +96,6 @@ class App extends Component {
     return (
 
       <div style={{ display: 'flex', flex: 0, margin: '5%', flexDirection: 'column' }}>
-
         <h1 className={"title"}>Easy Employees Simple Crud</h1>
         <div className='menu-container'>
           <div className="filter-container">
