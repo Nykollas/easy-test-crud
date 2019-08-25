@@ -10,10 +10,10 @@
     "md5": "2.2.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.0"
+    "react-scripts": "3.1.0",
+    "serve": "^11.1.0"
   },
   "scripts": {
-    "prestart": "yarn add md5",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
