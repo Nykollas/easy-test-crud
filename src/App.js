@@ -6,6 +6,7 @@ import PlusIcon from '@material-ui/icons/PlusOne';
 import LeftArrow from '@material-ui/icons/ArrowLeft';
 import RightArrow from '@material-ui/icons/ArrowRight';
 import Button from '@material-ui/core/Button';
+import FIREBASE_APIKEY from './const/APIKEY';
 import Fuse from 'fuse.js';
 import firebase from 'firebase';
 import './assets/styles.css';
@@ -14,7 +15,7 @@ const md5 = require('md5');
 
 
 var firebaseConfig = {
-  apiKey: "AIzaSyCNxNkzej9YovwpOX5TZ1k0lnvmn8uwQtU",
+  apiKey: FIREBASE_APIKEY,
   authDomain: "easy-test-aa57b.firebaseapp.com",
   databaseURL: "https://easy-test-aa57b.firebaseio.com",
   projectId: "easy-test-aa57b",

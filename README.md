@@ -1,5 +1,23 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+#Test Easycomtec
+
+Teste padrão para a processo seletivo da Easycomtec
+O crud registra dados de colaboradores (eg. nome e email).
+A aplicação possui as funções básicas de uma aplicação CRUD.
+Inclui também um sistema simples de pesquisa, faltou uma paginação dos dados mas considerando o custo para se densenvolver
+um sistema de paginação e o escopo do projeto avaliou-se como inviável.
+
+A aplicação pode ser testada de imediato no seguinte link:
+
+https://obscure-sea-13279.herokuapp.com/
+
+Agradeço pela avaliação,
+E confesso que gostaria de um feedback :).
+Att, 
+
+
 ## Available Scripts
 
 In the project directory, you can run:
