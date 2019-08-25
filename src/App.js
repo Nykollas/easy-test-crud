@@ -6,7 +6,7 @@ import PlusIcon from '@material-ui/icons/PlusOne';
 import LeftArrow from '@material-ui/icons/ArrowLeft';
 import RightArrow from '@material-ui/icons/ArrowRight';
 import Button from '@material-ui/core/Button';
-import FIREBASE_APIKEY from './const/APIKEY';
+import FIREBASE_APIKEY from './const/APIKEY.js';
 import Fuse from 'fuse.js';
 import firebase from 'firebase';
 import './assets/styles.css';
